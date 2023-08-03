@@ -1,4 +1,13 @@
 return {
+  {
+    'iamcco/markdown-preview.nvim',
+    build = "cd app && npm install",
+    ft = "markdown",
+    enabled = false,
+    config =function()
+      vim.g.mkdp_browser= 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
+    end
+  },
   "b0o/SchemaStore.nvim",
   {
     "folke/neodev.nvim",
@@ -50,7 +59,7 @@ return {
     cmd = function(_, cmds) -- HACK: lazy load lspconfig on `:Neoconf` if neoconf is available
       if require("astronvim.utils").is_available "neoconf.nvim" then table.insert(cmds, "Neoconf") end
     end,
-    event = "User AstroFile",
+    event = {"User AstroFile","FileType"},
     config = require "plugins.configs.lspconfig",
   },
   {
@@ -62,12 +71,12 @@ return {
         opts = { handlers = {} },
       },
     },
-    event = "User AstroFile",
+    event = {"User AstroFile","FileType"},
     opts = function() return { on_attach = require("astronvim.utils.lsp").on_attach } end,
   },
   {
     "stevearc/aerial.nvim",
-    event = "User AstroFile",
+    event = {"User AstroFile","FileType"},
     opts = {
       attach_mode = "global",
       backends = { "lsp", "treesitter", "markdown", "man" },
