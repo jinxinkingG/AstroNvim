@@ -1,6 +1,6 @@
 if vim.g.neovide then
   -- set font
-  vim.o.guifont ="DejaVuSansM Nerd Font Mono:h14"
+  vim.o.guifont ="DejaVuSansM Nerd Font Mono:h16"
 	vim.g.neovide_fullscreen = false
 	vim.g.neovide_remember_window_size = true
 	-- Hiding the mouse when typing
@@ -22,4 +22,15 @@ if vim.g.neovide then
 	vim.g.neovide_cursor_vfx_opacity = 80.0
 	-- Particle config
 	vim.g.neovide_cursor_vfx_particle_lifetime = 0.6
+	vim.o.clipboard='unnamedplus'
+	vim.keymap.set('n', '<C-s>', ':w<CR>') -- Save
+  vim.keymap.set('v', '<C-c>', '"+y') -- Copy
+  vim.keymap.set('n', '<C-v>', '"+P') -- Paste normal mode
+  vim.keymap.set('v', '<C-v>', '"+P') -- Paste visual mode
+  vim.keymap.set('c', '<C-v>', '<C-R>+') -- Paste command mode
+  vim.keymap.set('i', '<C-v>', '<ESC>l"+Pli') -- Paste insert mode
+  vim.api.nvim_set_keymap('', '<C-v>', '+p<CR>', { noremap = true, silent = true})
+	vim.api.nvim_set_keymap('!', '<C-v>', '<C-R>+', { noremap = true, silent = true})
+	vim.api.nvim_set_keymap('t', '<C-v>', '<C-R>+', { noremap = true, silent = true})
+	vim.api.nvim_set_keymap('v', '<C-v>', '<C-R>+', { noremap = true, silent = true})
 end
