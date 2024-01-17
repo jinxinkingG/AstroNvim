@@ -1,16 +1,8 @@
 return {
-  {
-    'iamcco/markdown-preview.nvim',
-    build = "cd app && npm install",
-    ft = "markdown",
-    enabled = false,
-    config =function()
-      vim.g.mkdp_browser= 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe'
-    end
-  },
-  "b0o/SchemaStore.nvim",
+  { "b0o/SchemaStore.nvim", lazy = true },
   {
     "folke/neodev.nvim",
+    lazy = true,
     opts = {
       override = function(root_dir, library)
         for _, astronvim_config in ipairs(astronvim.supported_configs) do
